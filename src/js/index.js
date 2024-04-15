@@ -1,16 +1,17 @@
 import axios from 'axios';
 import anime from 'animejs/lib/anime.es.js';
 import Letterize from 'letterizejs';
-import '../css/style.css'; // Assuming CSS file is in the same directory
+import '../css/style.css';
 import imgNotFound from '../img/imgNotFound.jpg';
 
 const searchButton = document.getElementById('searchButton');
 const searchInput = document.getElementById('searchInput');
 const resultsDiv = document.getElementById('results');
 const descriptionContainer = document.getElementById('descriptionContainer');
-const descriptionsDiv = document.getElementById('description'); // Assuming separate element for descriptions
+const descriptionsDiv = document.getElementById('description');
 const errorElement = document.getElementById('error');
 
+// animations for input
 anime({
   targets: '.search-input',
   translateX: [100, 0],
@@ -33,27 +34,24 @@ anime({
 searchButton.addEventListener('click', async () => {
   const searchTerm = searchInput.value.toLowerCase().trim();
 
-  const imgOnload = document.createElement('div');
+  const imgOnload = document.createElement('div'); // loader for the results
   imgOnload.classList.add('loader');
   resultsDiv.appendChild(imgOnload);
 
-  errorElement.textContent = '';
-
   try {
     imgOnload.style.display = 'block';
-
     const response = await axios.get(`https://openlibrary.org/subjects/${searchTerm}.json?limit=20`);
     displayResults(response.data.works);
     console.log(response.data);
     if (response.data.works.length === 0) {
-      displayError('No results found. Please try again.');
+      displayError('No results found. Please try again.'); // error handler, 134 
     } else {
       resultsDiv.scrollIntoView({ behavior: 'smooth' });
     }
   } catch (error) {
     displayError('');
   } finally {
-    imgOnload.style.display = 'none';
+    imgOnload.style.display = 'none'; // remove loader if result = true
   }
 });
 
@@ -61,14 +59,15 @@ function displayResults(works) {
   resultsDiv.innerHTML = '';
   resultsDiv.classList.add('results');
 
-  works.forEach((work) => {
+  works.forEach((work) => { // creates elements for each result for inserting images, titles, authors and descriptions
     const card = document.createElement('div');
     card.classList.add('card');
-    const imgOnload = document.createElement('div');
+    const imgOnload = document.createElement('div'); // loader for image
     imgOnload.classList.add('img-loader');
     const cover = document.createElement('img');
     cover.classList.add('cover');
-    anime({
+
+    anime({  // animation for card
       targets: '.card',
       translateX: [100, 0],
       duration: 1200,
@@ -77,6 +76,7 @@ function displayResults(works) {
         return 300 + 100 * i;
       },
     });
+
     try {
       const coverID = work.cover_id;
       cover.onload = function () {
@@ -104,12 +104,12 @@ function displayResults(works) {
     authors.textContent = work.authors[0].name || 'Unknown Author'; // Handle missing author data
     card.appendChild(authors);
 
-    card.addEventListener('click', async () => {
+    card.addEventListener('click', async () => { // creates the description when you click on the card
       const key = work.key.replace('/works/', '');
       console.log(work);
       try {
         const descriptionResponse = await axios.get(`https://openlibrary.org/works/${key}.json`);
-        const description =
+        const description =             // check if the description is available
           descriptionResponse.data.description?.value ||
           descriptionResponse.data.description ||
           'No description available.';
@@ -122,8 +122,8 @@ function displayResults(works) {
           // Clear description on click outside
           descriptionsDiv.textContent = '';
           descriptionContainer.classList.remove(...descriptionContainer.classList);
-          descriptionsDiv.classList.remove(...descriptionsDiv.classList); // Remove all classes
-        });
+          descriptionsDiv.classList.remove(...descriptionsDiv.classList);
+        })
       } catch (error) {
         console.error('Error fetching description:', error);
         descriptionsDiv.textContent = ('Description unavailable.', error);
@@ -141,6 +141,8 @@ function displayError(message) {
   resultsDiv.innerHTML = '';
   resultsDiv.appendChild(errorElement);
 }
+
+// background animations
 
 const containerTextAnimated = document.createElement('div');
 const textRepeatBook = document.createElement('p');
