@@ -157,7 +157,7 @@ body {
   width: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 8px solid #ffa200;
+  border: 8px solid #f7f7f7;
   animation:
     l20-1 0.8s infinite linear alternate,
     l20-2 1.6s infinite linear;
@@ -205,7 +205,7 @@ body {
   aspect-ratio: 1;
   border-radius: 50%;
   border: 8px solid #8a8a8a1e;
-  border-right-color: #f59b00;
+  border-right-color: #f7f7f7;
   position: relative;
   animation: l24 1s infinite linear;
 }
