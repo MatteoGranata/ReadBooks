@@ -7,6 +7,7 @@ import imgNotFound from '../img/imgNotFound.jpg';
 const searchButton = document.getElementById('searchButton');
 const searchInput = document.getElementById('searchInput');
 const resultsDiv = document.getElementById('results');
+const descriptionContainer = document.getElementById('descriptionContainer')
 const descriptionsDiv = document.getElementById('description'); // Assuming separate element for descriptions
 const errorElement = document.getElementById('error')
 
@@ -110,26 +111,24 @@ function displayResults(works) {
         card.addEventListener('click', async () => {
             const key = work.key.replace('/works/', '');
             console.log(work)
-
             try {
-
                 const descriptionResponse = await axios.get(`https://openlibrary.org/works/${key}.json`);
                 const description = descriptionResponse.data.description?.value || descriptionResponse.data.description || 'No description available.';
 
+                descriptionContainer.classList.add('container-description-div')
                 descriptionsDiv.classList.add('description-div');
                 descriptionsDiv.innerHTML = description;
 
-                document.body.addEventListener('click', () => { // Clear description on click outside
+                descriptionContainer.addEventListener('click', () => { // Clear description on click outside
                     descriptionsDiv.textContent = '';
+                    descriptionContainer.classList.remove(...descriptionContainer.classList);
                     descriptionsDiv.classList.remove(...descriptionsDiv.classList); // Remove all classes
-
                 });
             } catch (error) {
                 console.error('Error fetching description:', error);
                 descriptionsDiv.textContent = ('Description unavailable.', error);
             }
         });
-
         resultsDiv.appendChild(card);
     });
 }
