@@ -267,10 +267,10 @@ span {
   .container-animated {
     font-size: 2.1rem;
   }
-  .search-input{
+  .search-input {
     width: 20rem;
   }
-  .search-button{
-  translate: 125px 125px;
+  .search-button {
+    translate: 125px 125px;
   }
 }

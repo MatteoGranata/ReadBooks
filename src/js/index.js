@@ -31,15 +31,14 @@ anime({
   },
 });
 
-
-searchInput.addEventListener('keyup',async (e) => {
+searchInput.addEventListener('keyup', async (e) => {
   if (e.key === 'Enter') {
-   await sendInput()
+    await sendInput();
   }
-})
+});
 
-searchButton.addEventListener('click', async() => {
- await sendInput()
+searchButton.addEventListener('click', async () => {
+  await sendInput();
 });
 
 async function sendInput() {
@@ -55,7 +54,7 @@ async function sendInput() {
     displayResults(response.data.works);
     console.log(response.data);
     if (response.data.works.length === 0) {
-      displayError('No results found. Please try again.'); // error handler, 134 
+      displayError('No results found. Please try again.'); // error handler, 134
     } else {
       resultsDiv.scrollIntoView({ behavior: 'smooth' });
     }
@@ -66,12 +65,12 @@ async function sendInput() {
   }
 }
 
-
 function displayResults(works) {
   resultsDiv.innerHTML = '';
   resultsDiv.classList.add('results');
 
-  works.forEach((work) => { // creates elements for each result for inserting images, titles, authors and descriptions
+  works.forEach((work) => {
+    // creates elements for each result for inserting images, titles, authors and descriptions
     const card = document.createElement('div');
     card.classList.add('card');
     const imgOnload = document.createElement('div'); // loader for image
@@ -79,7 +78,8 @@ function displayResults(works) {
     const cover = document.createElement('img');
     cover.classList.add('cover');
 
-    anime({  // animation for card
+    anime({
+      // animation for card
       targets: '.card',
       translateX: [100, 0],
       duration: 1200,
@@ -116,12 +116,13 @@ function displayResults(works) {
     authors.textContent = work.authors[0].name || 'Unknown Author'; // Handle missing author data
     card.appendChild(authors);
 
-    card.addEventListener('click', async () => { // creates the description when you click on the card
+    card.addEventListener('click', async () => {
+      // creates the description when you click on the card
       const key = work.key.replace('/works/', '');
       console.log(work);
       try {
         const descriptionResponse = await axios.get(`https://openlibrary.org/works/${key}.json`);
-        const description =             // check if the description is available
+        const description = // check if the description is available
           descriptionResponse.data.description?.value ||
           descriptionResponse.data.description ||
           'No description available.';
@@ -135,7 +136,7 @@ function displayResults(works) {
           descriptionsDiv.textContent = '';
           descriptionContainer.classList.remove(...descriptionContainer.classList);
           descriptionsDiv.classList.remove(...descriptionsDiv.classList);
-        })
+        });
       } catch (error) {
         console.error('Error fetching description:', error);
         descriptionsDiv.textContent = ('Description unavailable.', error);
