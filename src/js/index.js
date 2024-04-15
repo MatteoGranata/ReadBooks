@@ -46,16 +46,14 @@ searchButton.addEventListener('click', async () => {
 
         const response = await axios.get(`https://openlibrary.org/subjects/${searchTerm}.json?limit=20`);
         displayResults(response.data.works);
-
-        if (response.data.works.length == 0) {
-            displayError("No results found, try again!");
+        console.log(response.data)
+        if (response.data.works.length === 0) {
+            displayError("No results found. Please try again.");
         } else {
             resultsDiv.scrollIntoView({ behavior: "smooth" });
         }
     } catch (error) {
-        console.error('Error fetching results:', error);
-        displayError(error);
-
+        displayError("");
     } finally {
         imgOnload.style.display = 'none'
     }
