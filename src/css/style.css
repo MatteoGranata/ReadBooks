@@ -156,39 +156,34 @@ body {
 .img-loader {
     width: 50px;
     aspect-ratio: 1;
-    display: grid;
     border-radius: 50%;
-    background: conic-gradient(#2A4B9B 25%, #F7F7F7 0 50%, #E94068 0 75%, #8FC78E 0);
-    animation: l22 2s infinite linear;
-}
-
-.img-loader::before,
-.img-loader::after {
-    content: "";
-    grid-area: 1/1;
-    margin: 15%;
-    border-radius: 50%;
-    background: inherit;
-    animation: inherit;
-}
-
-.img-loader::after {
-    margin: 25%;
-    animation-duration: 3s;
-}
-
-@keyframes l22 {
-    100% {
-        transform: rotate(1turn)
-    }
-}
+    border: 8px solid #ffa200;
+    animation:
+      l20-1 0.8s infinite linear alternate,
+      l20-2 1.6s infinite linear;
+  }
+  @keyframes l20-1{
+     0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+     12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+     25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+     50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+     62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+     75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+     100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+  }
+  @keyframes l20-2{ 
+    0%    {transform:scaleY(1)  rotate(0deg)}
+    49.99%{transform:scaleY(1)  rotate(135deg)}
+    50%   {transform:scaleY(-1) rotate(0deg)}
+    100%  {transform:scaleY(-1) rotate(-135deg)}
+  }
 
 .loader {
     width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
     border: 8px solid #8a8a8a1e;
-    border-right-color: #65f27e97;
+    border-right-color: #f59b00;
     position: relative;
     animation: l24 1s infinite linear;
 }
