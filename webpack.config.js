@@ -22,6 +22,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
+      favicon:'./src/img/readBooks-Logo.ico'
     }),
     new MiniCssExtractPlugin({
       filename: 'style.css',
