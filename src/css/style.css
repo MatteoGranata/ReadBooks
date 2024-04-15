@@ -3,3 +3,241 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #000000;
+    background-color: rgb(252, 186, 105);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.search-button {
+    color: #000000;
+    font-weight: 750;
+    translate: 172px 125px;
+    height: 2.8rem;
+    width: 4.4rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 0 1rem 1rem 0;
+    z-index: 1;
+}
+
+.search-button:hover {
+    background-color: rgba(128, 128, 128, 0.254);
+}
+
+.search-input {
+    border-radius: 1rem;
+    border: 3px double rgba(255, 255, 255, 0.996);
+    background-color: #f7f7f71c;
+    color: #000000;
+    height: 2.8rem;
+    width: 26rem;
+    font-size: 28px;
+    margin: 5rem;
+    font-weight: bold;
+    padding-left: 1rem;
+    backdrop-filter: blur(5px);
+}
+
+.search-input::placeholder{
+    font-weight: lighter;
+    font-size: 20px;
+}
+
+.results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 30px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    width: 100%;
+    height: 100%;
+    padding: 5rem 1rem 1rem 1rem;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 4px double #F7F7F7;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 0.75rem;
+    margin: 0;
+    width: 310px;
+    height: 600px;
+    padding: 0;
+    background-color: #f5f5f55f;
+    border: 3px double rgba(255, 255, 255, 0.996);
+    text-align: center;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: #cbcbcb5f;
+}
+
+.cover {
+    border-radius: 0.75rem;
+    width: 18rem;
+}
+
+.title {
+    font-size: 1.4rem;
+    margin: .5rem;
+}
+
+.authors {
+    /* position: relative;
+    bottom: 1rem; */
+    font-size: 1.2rem;
+    margin: 1rem;
+    font-style: italic;
+}
+
+.description-div {
+    position: fixed;
+    top: 12vh;
+    left: 30%;
+    right: 0;
+    max-width: 50%;
+    max-height: 70vh;
+    overflow-y: auto;
+    background-color: rgba(226, 226, 226, 0.638);
+    border: 4px double rgba(255, 255, 255, 0.996);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    backdrop-filter: blur(10px);
+    transform: scale(1);
+    transition: transform .5s ease-in-out;
+}
+
+.description-div:hover {
+    transform: scale(1.2);
+}
+
+.error {
+    color: rgb(164, 6, 6);
+    font-size: 1.5rem;
+}
+
+.img-loader {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    border-radius: 50%;
+    background: conic-gradient(#2A4B9B 25%, #F7F7F7 0 50%, #E94068 0 75%, #8FC78E 0);
+    animation: l22 2s infinite linear;
+}
+
+.img-loader::before,
+.img-loader::after {
+    content: "";
+    grid-area: 1/1;
+    margin: 15%;
+    border-radius: 50%;
+    background: inherit;
+    animation: inherit;
+}
+
+.img-loader::after {
+    margin: 25%;
+    animation-duration: 3s;
+}
+
+@keyframes l22 {
+    100% {
+        transform: rotate(1turn)
+    }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid #8a8a8a1e;
+    border-right-color: #65f27e97;
+    position: relative;
+    animation: l24 1s infinite linear;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: inherit;
+    animation: inherit;
+    animation-duration: 2s;
+}
+
+.loader:after {
+    animation-duration: 4s;
+}
+
+@keyframes l24 {
+    100% {
+        transform: rotate(1turn)
+    }
+}
+
+.container-animated {
+    position: fixed;
+    left: 0;
+    top: 0;
+    color: rgb(255, 205, 144);
+    width: 100vw;
+    height: fit-content;
+    font-size: 3.9rem;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Khula", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    z-index: -1;
+    word-break: break-all;
+}
+
+span {
+    display: inline-block;
+}
+
+.container-animated p {
+    display: flex;
+}
+
+@media (max-width:920px) {
+    .container-animated {
+        font-size: 2.1rem;
+
+    }
+}
