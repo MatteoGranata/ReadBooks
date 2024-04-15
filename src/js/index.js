@@ -1,5 +1,6 @@
 import axios from 'axios';
 import anime from 'animejs/lib/anime.es.js';
+import Letterize from "letterizejs"
 import '../css/style.css'; // Assuming CSS file is in the same directory
 import imgNotFound from '../img/imgNotFound.jpg';
 
@@ -10,23 +11,24 @@ const descriptionsDiv = document.getElementById('description'); // Assuming sepa
 const errorElement = document.getElementById('error')
 
 
-//
-//
-//
-//
-//
-//
-//
-//                      ADDED ANIMATION FOR INPUT
-//
-//
-//
-//
-//
-//
-//
-//
-//
+anime({
+    targets: '.search-input',
+    translateX: [100, 0],
+    duration: 1200,
+    opacity: [0, 1],
+    delay: (el, i) => {
+        return 300 + 100 * i;
+    },
+})
+anime({
+    targets: '.search-button',
+    translateX: [100, 0],
+    duration: 1200,
+    opacity: [0, 1],
+    delay: (el, i) => {
+        return 300 + 100 * i;
+    },
+})
 
 searchButton.addEventListener('click', async () => {
 
@@ -59,7 +61,7 @@ searchButton.addEventListener('click', async () => {
 });
 
 function displayResults(works) {
-    resultsDiv.innerHTML = ''; // Clear results before displaying new ones
+    resultsDiv.innerHTML = '';
     resultsDiv.classList.add('results')
 
     works.forEach(work => {
@@ -69,15 +71,15 @@ function displayResults(works) {
         imgOnload.classList.add("img-loader")
         const cover = document.createElement('img');
         cover.classList.add('cover')
-///        
-///        
-///        
-///        
-///           ADDED ANIMATION FOR CARD
-///        
-///        
-///        
-///        
+        anime({
+            targets: '.card',
+            translateX: [100, 0],
+            duration: 1200,
+            opacity: [0, 1],
+            delay: (el, i) => {
+                return 300 + 100 * i;
+            },
+        })
         try {
             const coverID = work.cover_id;
             cover.onload = function () {
@@ -141,3 +143,51 @@ function displayError(message) { // Added error display function
 }
 
 
+const containerTextAnimated = document.createElement('div');
+const textRepeatBook = document.createElement('p');
+const textRepeatFind = document.createElement('p');
+
+containerTextAnimated.classList.add('container-animated')
+
+textRepeatBook.textContent = 'BOOK-FIND-YOUR-NEXT-BOOK-FIND-YOUR-NEXT-BOOK-FIND'
+textRepeatFind.textContent = 'FIND-BOOK-YOUR-BOOK-NEXT-FIND-BOOK-NEXT-FIND-BOOK'
+
+for (var i = 0; i < 12; i++) {
+    var copyBook = textRepeatBook.cloneNode(true);
+    var copyFind = textRepeatFind.cloneNode(true);
+
+    copyBook.classList.add('animate-me', 'lol')
+    copyFind.classList.add('animate-me', 'lol')
+
+    containerTextAnimated.appendChild(copyBook)
+    containerTextAnimated.appendChild(copyFind)
+    document.body.appendChild(containerTextAnimated)
+}
+
+const test = new Letterize({
+    targets: ".animate-me"
+});
+
+const animation = anime.timeline({
+    targets: test.listAll,
+    delay: anime.stagger(150, {
+        grid: [test.list[0].length, test.list.length],
+        from: "center"
+    }),
+    loop: true
+});
+
+animation
+    .add({
+        scale: 0.8
+    })
+    .add({
+        rotate: '1turn'
+    })
+    .add({
+        scale: 1
+    })
+    .add({
+        rotate: '1turn'
+
+    });
