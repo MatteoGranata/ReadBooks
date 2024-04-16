@@ -31,17 +31,17 @@ anime({
   },
 });
 
-searchInput.addEventListener('keyup',(e)=>{
-  if(e.key === 'Enter'){
-    searchResult()
+searchInput.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    searchResult();
   }
-})
-
-searchButton.addEventListener('click', () => {
-  searchResult()
 });
 
-async function searchResult (){
+searchButton.addEventListener('click', () => {
+  searchResult();
+});
+
+async function searchResult() {
   const searchTerm = searchInput.value.toLowerCase().trim();
   const imgOnload = document.createElement('div'); // loader for the results
   imgOnload.classList.add('loader');
@@ -53,7 +53,7 @@ async function searchResult (){
     displayResults(response.data.works);
     console.log(response.data);
     if (response.data.works.length === 0) {
-      displayError('No results found. Please try again.'); // error handler, 134 
+      displayError('No results found. Please try again.'); // error handler, 134
     } else {
       resultsDiv.scrollIntoView({ behavior: 'smooth' });
     }
@@ -68,7 +68,8 @@ function displayResults(works) {
   resultsDiv.innerHTML = '';
   resultsDiv.classList.add('results');
 
-  works.forEach((work) => { // creates elements for each result for inserting images, titles, authors and descriptions
+  works.forEach((work) => {
+    // creates elements for each result for inserting images, titles, authors and descriptions
     const card = document.createElement('div');
     card.classList.add('card');
     const imgOnload = document.createElement('div'); // loader for image
@@ -76,7 +77,8 @@ function displayResults(works) {
     const cover = document.createElement('img');
     cover.classList.add('cover');
 
-    anime({  // animation for card
+    anime({
+      // animation for card
       targets: '.card',
       translateX: [100, 0],
       duration: 1200,
@@ -113,12 +115,13 @@ function displayResults(works) {
     authors.textContent = work.authors[0].name || 'Unknown Author'; // Handle missing author data
     card.appendChild(authors);
 
-    card.addEventListener('click', async () => { // creates the description when you click on the card
+    card.addEventListener('click', async () => {
+      // creates the description when you click on the card
       const key = work.key.replace('/works/', '');
       console.log(work);
       try {
         const descriptionResponse = await axios.get(`https://openlibrary.org/works/${key}.json`);
-        const description =             // check if the description is available
+        const description = // check if the description is available
           descriptionResponse.data.description?.value ||
           descriptionResponse.data.description ||
           'No description available.';
@@ -132,7 +135,7 @@ function displayResults(works) {
           descriptionsDiv.textContent = '';
           descriptionContainer.classList.remove(...descriptionContainer.classList);
           descriptionsDiv.classList.remove(...descriptionsDiv.classList);
-        })
+        });
       } catch (error) {
         console.error('Error fetching description:', error);
         descriptionsDiv.textContent = ('Description unavailable.', error);
@@ -152,7 +155,6 @@ function displayError(message) {
 }
 
 // background animations
-
 const containerTextAnimated = document.createElement('div');
 const textRepeatBook = document.createElement('p');
 const textRepeatFind = document.createElement('p');
@@ -163,11 +165,12 @@ textRepeatBook.textContent = 'BOOK-FIND-YOUR-NEXT-BOOK-FIND-YOUR-NEXT-BOOK-FIND'
 textRepeatFind.textContent = 'FIND-BOOK-YOUR-BOOK-NEXT-FIND-BOOK-NEXT-FIND-BOOK';
 
 for (var i = 0; i < 12; i++) {
+  // cloning text for background
   var copyBook = textRepeatBook.cloneNode(true);
   var copyFind = textRepeatFind.cloneNode(true);
 
-  copyBook.classList.add('animate-me', 'lol');
-  copyFind.classList.add('animate-me', 'lol');
+  copyBook.classList.add('animate-me');
+  copyFind.classList.add('animate-me');
 
   containerTextAnimated.appendChild(copyBook);
   containerTextAnimated.appendChild(copyFind);
@@ -180,7 +183,7 @@ const test = new Letterize({
 
 const animation = anime.timeline({
   targets: test.listAll,
-  delay: anime.stagger(150, {
+  delay: anime.stagger(100, {
     grid: [test.list[0].length, test.list.length],
     from: 'center',
   }),
@@ -189,14 +192,15 @@ const animation = anime.timeline({
 
 animation
   .add({
+    scale: 1.2,
+  })
+  .add({
+    rotate: '1turn',
+  })
+  .add({
     scale: 0.8,
   })
   .add({
-    rotate: '1turn',
-  })
-  .add({
+    rotate: '2turn',
     scale: 1,
-  })
-  .add({
-    rotate: '1turn',
   });

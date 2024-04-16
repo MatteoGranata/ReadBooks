@@ -1,4 +1,3 @@
-
 # ReadBooks
 
 This project aims to develop a web application that uses the [Open Library](https://openlibrary.org/) service to encourage reading.
@@ -6,11 +5,13 @@ This project aims to develop a web application that uses the [Open Library](http
 The application will allow users to explore books from different categories and learn more about the ones that interest them most.
 
 ## Demo
+
 ![](https://komarev.com/ghpvc/?username=MatteoGranata&color=e2b6ff&style=flat-square)
 
 [CLICK HERE](https://readbookshelf.netlify.app/)
 
 ![App Screenshot](https://i.postimg.cc/V6YNbcP3/Screen-Homepage-Read-Books.png)
+
 ## functionality
 
 The application will present the following features:
@@ -22,6 +23,7 @@ The application will present the following features:
 - Viewing titles and authors: The application will display a list of book titles along with their respective authors.
 
 - Book description view: By clicking on a book, the application will retrieve the full description of the book from the Open Library API and display it to the user.
+
 ## Run Locally
 
 Clone the project
@@ -48,19 +50,14 @@ Start the server
   npm run dev
 ```
 
-
 ## Built with
 
-**Client:** webpack 
+**Client:** webpack
 
 **Server:** Node
 
 **Libraries** [animejs](https://animejs.com/), [axios](https://www.npmjs.com/package/axios), [letterizejs](https://github.com/WojciechKrakowiak/letterize)
 
-
-
-
 ## Authors
 
 - [@MatteoGranata](https://github.com/MatteoGranata)
-

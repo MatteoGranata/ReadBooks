@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
-
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
 const config = {
@@ -22,7 +21,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
-      favicon:'./src/img/readBooks-Logo.ico'
+      favicon: './src/img/readBooks-Logo.ico',
     }),
     new MiniCssExtractPlugin({
       filename: 'style.css',
@@ -46,16 +45,13 @@ const config = {
   },
 };
 
-
 module.exports = () => {
   if (isProduction) {
-      config.mode = 'production';
-      
-      // config.plugins.push(new MiniCssExtractPlugin());
-      
-      
+    config.mode = 'production';
+
+    // config.plugins.push(new MiniCssExtractPlugin());
   } else {
-      config.mode = 'development';
+    config.mode = 'development';
   }
   return config;
 };
