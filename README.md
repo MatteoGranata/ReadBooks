@@ -10,7 +10,6 @@ The application will allow users to explore books from different categories and 
 
 [CLICK HERE](https://readbookshelf.netlify.app/)
 
-![App Screenshot](https://i.postimg.cc/V6YNbcP3/Screen-Homepage-Read-Books.png)
 
 ## functionality
 
