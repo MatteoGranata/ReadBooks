@@ -5,6 +5,7 @@
 }
 
 body {
+  font-family: 'Khula', sans-serif;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -103,13 +104,11 @@ body {
 }
 
 .title {
-  font-size: 1.4rem;
-  margin: 0.5rem;
+  font-size: 1.3rem;
 }
 
 .authors {
-  font-size: 1.2rem;
-  margin: 1rem;
+  font-size: 1.1rem;
   font-style: italic;
 }
 
@@ -257,7 +256,6 @@ body {
   justify-content: center;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Khula', sans-serif;
   box-sizing: border-box;
   margin: 0;
   z-index: -1;

@@ -31,9 +31,17 @@ anime({
   },
 });
 
+searchInput.addEventListener('keyup',(e)=>{
+  if(e.key === 'Enter'){
+    searchResult()
+  }
+})
 
+searchButton.addEventListener('click', () => {
+  searchResult()
+});
 
-searchButton.addEventListener('click', async () => {
+async function searchResult (){
   const searchTerm = searchInput.value.toLowerCase().trim();
   const imgOnload = document.createElement('div'); // loader for the results
   imgOnload.classList.add('loader');
@@ -54,7 +62,7 @@ searchButton.addEventListener('click', async () => {
   } finally {
     imgOnload.style.display = 'none'; // remove loader if result = true
   }
-});
+}
 
 function displayResults(works) {
   resultsDiv.innerHTML = '';
